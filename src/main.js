@@ -1,0 +1,26 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './style.css';
+
+const app = document.querySelector('#app');
+
+app.innerHTML = `
+<main class="container py-5">
+    <section class="mx-auto" style="max-width: 600px;">
+        <h1 class="mb-2"> 
+            Lista de Tareas
+        </h1>
+
+        <p class="text-secondary mb-4">
+            Laboratorio de Git y GitHub
+        </p>
+
+        <div class="card">
+            <div class="card-body">
+                <p class="mb-0">
+                    La aplicación está funcionando correctamente.
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+`;
