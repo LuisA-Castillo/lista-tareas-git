@@ -1,0 +1,28 @@
+/*
+  El elemento #taskList es el contenedor
+  donde JavaScript inserta las tareas.
+*/
+
+/*
+  :empty permite detectar mediante CSS
+  cuándo el elemento no contiene
+  ningún elemento hijo.
+*/
+#taskList:empty::before{
+    /* Texto que se mostrará cuando todavía no existan tareas. */
+    content: "No hay tareas registradas. Agrega tu primera tarea.";
+    /* Convertir el pseudo-elemento en un bloque visible. */
+    display: block;
+    /* Separación interna */
+    padding: 1.5rem;
+    /* Centrar el mensaje */
+    text-align: center;
+    /* Utilizar un tono secundario */
+    color: #6c757d;
+    /* Crear un borde similar al listado Bootstrap */
+    border: 1px solid #dee2e6;
+    /* Redondear bordes */
+    border-radius: 0.375rem;
+    /* Diferenciar visualmente el estado vacío */
+    background-color: #f8f9fa;
+}
