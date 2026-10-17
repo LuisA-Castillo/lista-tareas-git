@@ -15,7 +15,7 @@ function renderApp() {
     <main class="container py-5">
         <section class="mx-auto" style="max-width: 600px;">
             <h1 class="mb-2"> 
-                Lista de Tareas
+                Tareas pendientes
             </h1>
 
             <p class="text-secondary mb-4">
