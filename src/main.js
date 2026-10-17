@@ -83,9 +83,15 @@ function renderTasks() {
     //Obtener la lista de tareas
     const taskList = document.querySelector('#taskList');
 
-    taskList.innerHTML = tasks.map((task) => `
-    <li class="list-group-item">
-        ${task}
+    taskList.innerHTML = tasks.map((task, index) => `
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <span>
+            ${task}        
+        </span>
+
+        <button type="button" class="btn btn-outline-danger btn-sm btn-delete" data-index="${index}">
+            Eliminar
+        </button>
     </li>
     `).join('');
 
@@ -93,6 +99,22 @@ function renderTasks() {
     const taskCounter = document.querySelector('#taskCounter');
 
     taskCounter.textContent = `Total de tareas: ${tasks.length}`;
+
+    //Obtener botones de elimnar y eliminar la tarea correspondiente
+    const deleteButtons = document.querySelectorAll('.btn-delete');
+
+    deleteButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            //Recuperar la posición de la tarea desde data-index
+            const index = Number(button.dataset.index);
+
+            //Eliminar una tarea del arreglo
+            tasks.splice(index, 1);
+
+            //Volver a renderizar la lista
+            renderTasks();
+        });
+    });
 }
 
 //Ejecutar la primera renderizacion
