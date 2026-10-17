@@ -124,10 +124,10 @@ function renderTasks() {
             const index = Number(button.dataset.index);
 
             //Obtener la tarea correspondiente
-            const task = tasks[index];
+            const tasks1 = tasks[index];
 
             //Invertir su estado false -> true  true -> false
-            task.completed = !task.completed;
+            tasks1.completed = !tasks1.completed;
 
             //Volver a construir la lista para reflejar el nuevo estado
             renderTasks();
