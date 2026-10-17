@@ -14,7 +14,7 @@
     /* Convertir el pseudo-elemento en un bloque visible. */
     display: block;
     /* Separación interna */
-    padding: 1.5rem;
+    padding: 2rem;
     /* Centrar el mensaje */
     text-align: center;
     /* Utilizar un tono secundario */
