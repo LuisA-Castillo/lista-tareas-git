@@ -57,12 +57,18 @@ function renderApp() {
         const taskText = taskInput.value.trim();
 
         //Validar que el texto de la tarea no este vacio
-        if(!taskText){
+        if (!taskText) {
             return;
         }
 
+        //Crear una nueva tarea y cada tarea guarda el texto escrito y si esta completada o no
+        const newTask = {
+            text: taskText,
+            completed: false,
+        };
+
         //Agregar la tarea al arreglo
-        tasks.push(taskText);
+        tasks.push(newTask);
 
         //Limpiar el input
         taskInput.value = '';
@@ -84,14 +90,20 @@ function renderTasks() {
     const taskList = document.querySelector('#taskList');
 
     taskList.innerHTML = tasks.map((task, index) => `
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        <span>
-            ${task}        
+    <li class="list-group-item d-flex justify-content-between align-items-center gap-3">
+        <span class="flex-grow-1 ${task.completed ? 'text-decoration-line-through text-secondary' : ''}">
+            ${task.text}        
         </span>
 
-        <button type="button" class="btn btn-outline-danger btn-sm btn-delete" data-index="${index}">
+        <div class="d-flex gap-2">
+            <button type="button" class="btn btn-outline-success btn-sm btn-complete" data-index="${index}">
+            ${task.completed ? 'Deshacer' : 'Completar'}
+            </button>
+        
+            <button type="button" class="btn btn-outline-danger btn-sm btn-delete" data-index="${index}">
             Eliminar
-        </button>
+            </button>
+        </div>
     </li>
     `).join('');
 
@@ -99,6 +111,28 @@ function renderTasks() {
     const taskCounter = document.querySelector('#taskCounter');
 
     taskCounter.textContent = `Total de tareas: ${tasks.length}`;
+
+    //Obtener todos los botones utilizados para completar o reabrir tareas.
+    const completeButtons = document.querySelectorAll(
+        '.btn-complete'
+    );
+
+    //Agregar el comportamienta a cada boton Completar
+    completeButtons.forEach((button)=>{
+        button.addEventListener('click',()=>{
+            //Recuperar la posicion de la tarea desde el atributo data-index
+            const index = Number(button.dataset.index);
+
+            //Obtener la tarea correspondiente
+            const tasks1 = tasks[index];
+
+            //Invertir su estado false -> true  true -> false
+            tasks1.completed = !tasks1.completed;
+
+            //Volver a construir la lista para reflejar el nuevo estado
+            renderTasks();
+        });
+    });
 
     //Obtener botones de elimnar y eliminar la tarea correspondiente
     const deleteButtons = document.querySelectorAll('.btn-delete');
